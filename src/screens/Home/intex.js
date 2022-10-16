@@ -17,7 +17,7 @@ import { ScrollView, ActivityIndicator } from "react-native";
 import { SliderItem } from "../../components/SliderItem";
 import API, { Key } from "../../service/api";
 
-import { getListMovies } from "../../utils/movieAlgorithm";
+import { getListMovies, randomBanner } from "../../utils/movieAlgorithms";
 const { API_Key } = process.env;
 
 export const Home = () => {
@@ -25,6 +25,7 @@ export const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topMovies, setTopMovies] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [bannerMovie, setBannerMovie] = useState({});
 
   useEffect(() => {
     let isActive = true;
@@ -58,6 +59,10 @@ export const Home = () => {
         const nowList = getListMovies(10, nowData.data.results);
         const popularList = getListMovies(4, popularData.data.results);
         const topList = getListMovies(6, topData.data.results);
+        const randomBannerMovie =
+          nowData.data.results[randomBanner(nowData.data.results)];
+
+        setBannerMovie(randomBannerMovie);
 
         setNowMovies(nowList);
         setPopularMovies(popularList);
@@ -101,7 +106,7 @@ export const Home = () => {
           <Banner
             resizeMethod="resize"
             source={{
-              uri: "https://br.web.img2.acsta.net/medias/nmedia/18/89/43/82/20052140.jpg",
+              uri: `https://image.tmdb.org/t/p/original/${bannerMovie.poster_path}`,
             }}
           />
         </BannerButton>
