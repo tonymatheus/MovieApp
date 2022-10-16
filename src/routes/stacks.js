@@ -14,7 +14,14 @@ export const StackRoute = () => {
       }}
     >
       <Stack.Screen component={Home} name="Home" options={{}} />
-      <Stack.Screen component={Details} name="Details" options={{}} />
+      <Stack.Screen
+        component={Details}
+        name="Details"
+        options={{
+          headerShown: false,
+          title: "Detalhes",
+        }}
+      />
     </Stack.Navigator>
   );
 };
