@@ -1,15 +1,16 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Container, Title } from "./styles";
 
 export const Details = () => {
   const navigation = useNavigation();
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details</Text>
+    <Container>
+      <Title>Details</Title>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Voltar</Text>
+        <Title>Voltar</Title>
       </TouchableOpacity>
-    </View>
+    </Container>
   );
 };
