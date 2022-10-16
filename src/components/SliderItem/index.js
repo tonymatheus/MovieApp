@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Container, BannerItem, RateContainer, Rate, Title } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 
-export const SliderItem = () => {
+export const SliderItem = ({ data }) => {
   const navigation = useNavigation();
 
   return (
@@ -14,13 +14,13 @@ export const SliderItem = () => {
       <BannerItem
         resizeMethod="resize"
         source={{
-          uri: "https://br.web.img2.acsta.net/medias/nmedia/18/89/43/82/20052140.jpg",
+          uri: `https://image.tmdb.org/t/p/original/${data.poster_path}`,
         }}
       />
-      <Title numberOfLines={1}>Vingadores</Title>
+      <Title numberOfLines={1}>{data.title}</Title>
       <RateContainer>
         <Ionicons name="md-star" size={13} color="#e7a74e" />
-        <Rate>9/10</Rate>
+        <Rate>{data.vote_average}</Rate>
       </RateContainer>
     </Container>
   );
