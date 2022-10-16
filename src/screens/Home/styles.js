@@ -34,7 +34,7 @@ export const Banner = styled.Image`
 `;
 
 export const SliderMovie = styled.FlatList`
-  width: 350px;
+  width: 368px;
   border-radius: 8px;
   margin: 0 14px;
 `;
