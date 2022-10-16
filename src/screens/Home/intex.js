@@ -13,11 +13,10 @@ import {
 
 import { Header } from "../../components/Header";
 import { Feather } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, ActivityIndicator } from "react-native";
 import { SliderItem } from "../../components/SliderItem";
 import API, { Key } from "../../service/api";
-import axios from "axios";
-import api from "../../service/api";
+
 import { getListMovies } from "../../utils/movieAlgorithm";
 const { API_Key } = process.env;
 
@@ -25,19 +24,11 @@ export const Home = () => {
   const [nowMovies, setNowMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [topMovies, setTopMovies] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const isActive = false;
     const getMovies = async () => {
-      // const response = await API.get(`movie/now_playing/`, {
-      //   params: {
-      //     api_key: Key,
-      //     language: "pt-BR",
-      //     page: 1,
-      //   },
-      // });
-
-      //setNowMovies(response.data);
       const [nowData, popularData, topData] = await Promise.all([
         API.get("movie/now_playing/", {
           params: {
@@ -68,10 +59,24 @@ export const Home = () => {
       setNowMovies(nowList);
       setPopularMovies(popularList);
       setTopMovies(topList);
+      setIsLoading(false);
     };
 
     getMovies();
   }, []);
+
+  if (isLoading) {
+    return (
+      <Container>
+        <ActivityIndicator
+          size="large"
+          animating={true}
+          style={{ marginTop: 50 }}
+          color="#fff"
+        />
+      </Container>
+    );
+  }
 
   return (
     <Container>
