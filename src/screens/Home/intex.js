@@ -27,7 +27,8 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const isActive = false;
+    let isActive = true;
+    const ac = new AbortController();
     const getMovies = async () => {
       const [nowData, popularData, topData] = await Promise.all([
         API.get("movie/now_playing/", {
@@ -52,17 +53,24 @@ export const Home = () => {
           },
         }),
       ]);
-      const nowList = getListMovies(10, nowData.data.results);
-      const popularList = getListMovies(4, popularData.data.results);
-      const topList = getListMovies(6, topData.data.results);
 
-      setNowMovies(nowList);
-      setPopularMovies(popularList);
-      setTopMovies(topList);
-      setIsLoading(false);
+      if (isActive) {
+        const nowList = getListMovies(10, nowData.data.results);
+        const popularList = getListMovies(4, popularData.data.results);
+        const topList = getListMovies(6, topData.data.results);
+
+        setNowMovies(nowList);
+        setPopularMovies(popularList);
+        setTopMovies(topList);
+        setIsLoading(false);
+      }
     };
 
     getMovies();
+    return () => {
+      isActive = false;
+      ac.abort();
+    };
   }, []);
 
   if (isLoading) {
