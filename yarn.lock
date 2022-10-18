@@ -4946,6 +4946,11 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+mkdir-recursive@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/mkdir-recursive/-/mkdir-recursive-0.4.0.tgz#7af3312e3e04987b1fba8fa873850f9e4d183cd1"
+  integrity sha512-gbTtiEu8P/GSMh1lAa0YYNr8XIfDzFgnWtetw3Hfz9nw6YXySHNYOZF/uUTgyp8GHvFnNw/EG7VhOkD6zfVb6A==
+
 mkdirp@^0.5.1, mkdirp@~0.5.1:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.6.tgz#7def03d2432dcae4ba1d611445c48396062255f6"
@@ -5666,6 +5671,18 @@ react-native-screens@^3.18.1:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-stars@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-stars/-/react-native-stars-1.2.2.tgz#33be6890264df418f0b9f321ce4351de0744c533"
+  integrity sha512-ROoluqPqv93ycUV3Mwf/p1fFW2TOcb6juhGrMb5oNYYTa0aTe4WgnboipNWLe5viDlC8XYLS+g5WpZBvCzwFkw==
+
+react-native-start@^0.2.56:
+  version "0.2.56"
+  resolved "https://registry.yarnpkg.com/react-native-start/-/react-native-start-0.2.56.tgz#e05ae65a1f3d143fa4b554d05edfd2f3d76e0523"
+  integrity sha512-M0B25KXCCwBvTxLF8wpx3ZhL37toiiepYPoBuByAofz+K36FNAnyhxuUL/TENJSsHesh8vHFBt3vrWRqDOfGNA==
+  dependencies:
+    mkdir-recursive "^0.4.0"
 
 react-native-vector-icons@^9.2.0:
   version "9.2.0"
