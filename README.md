@@ -41,5 +41,6 @@ yarn ios (Para rodar o Emulador ios)
 - [x] Ract-Navigation
 - [X] Styled-Components
 ## Projeto Rodando
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/43850888/196705759-01ff6314-f614-4925-a895-c7ba85ab04fb.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/43850888/196707022-3081b72f-fab9-4e77-95e9-82f8547ea36b.gif)
+
 
