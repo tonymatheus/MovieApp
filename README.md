@@ -40,3 +40,6 @@ yarn ios (Para rodar o Emulador ios)
 - [x] The movieDB Api
 - [x] Ract-Navigation
 - [X] Styled-Components
+## Projeto Rodando
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/43850888/196705759-01ff6314-f614-4925-a895-c7ba85ab04fb.gif)
+
