@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { ScrollView, Modal } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   Banner,
@@ -10,15 +10,24 @@ import {
   ButonLink,
   ContentArea,
   Rate,
+  ListGenres,
+  Description,
+  TitleDescription,
 } from "./styles";
+
 import { Feather, Ionicons } from "@expo/vector-icons";
 import API, { Key } from "../../service/api";
 import Stars from "react-native-stars";
+import { Genres } from "../../Genres";
+import WebView from "react-native-webview";
+import { ModalLink } from "../../components/ModalLink";
+
 export const Details = () => {
   const navigation = useNavigation();
   const route = useRoute();
 
   const [movie, setMovie] = useState({});
+  const [openLink, setOpenLink] = useState(false);
 
   useEffect(() => {
     let isActive = true;
@@ -64,7 +73,7 @@ export const Details = () => {
         }}
       />
 
-      <ButonLink opacity={0.3}>
+      <ButonLink opacity={0.3} onPress={() => setOpenLink(true)}>
         <Feather name="link" size={24} color="#fff" />
       </ButonLink>
       <Title numberOfLines={1}>{movie.title}</Title>
@@ -83,6 +92,25 @@ export const Details = () => {
         />
         <Rate>{movie.vote_average}/10</Rate>
       </ContentArea>
+
+      <ListGenres
+        data={movie?.genres}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => <Genres data={item} />}
+      />
+      <ScrollView showsHorizontalScrollIndicator={false}>
+        <TitleDescription>Descrisção</TitleDescription>
+        <Description>{movie.overview}</Description>
+      </ScrollView>
+      <Modal animationType="slide" transparent={true} visible={openLink}>
+        <ModalLink
+          title={movie?.title}
+          link={movie?.homepage}
+          closeModal={() => setOpenLink(false)}
+        />
+      </Modal>
     </Container>
   );
 };

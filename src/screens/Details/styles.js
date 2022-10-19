@@ -29,7 +29,7 @@ export const HeaderButton = styled.TouchableOpacity`
 
 export const Banner = styled.Image`
   width: 100%;
-  height: 490px;
+  height: 430px;
   border-bottom-left-radius: 75px;
   border-bottom-right-radius: 75px;
 `;
@@ -42,7 +42,7 @@ export const ButonLink = styled.TouchableOpacity`
   width: 70px;
   height: 70px;
   position: absolute;
-  top: 420px;
+  top: 380px;
   right: 10px;
   z-index: 99;
 `;
@@ -61,8 +61,34 @@ export const Rate = styled.Text`
   font-weight: bold;
 `;
 
+export const ListGenres = styled.FlatList`
+  padding-left: 14px;
+  margin: 10px 0;
+  max-height: 35px;
+  min-height: 35px;
+`;
+
+export const Description = styled.Text`
+  font-size: 15px;
+  color: #fff;
+  font-weight: 200;
+  padding-left: 14px;
+  padding-right: 14px;
+  line-height: 20px;
+  padding-bottom: 30px;
+`;
+
 export const Title = styled.Text`
   color: #fff;
+  margin-left: 14px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+`;
+
+export const TitleDescription = styled.Text`
+  color: #fff;
+  margin-left: 14px;
   font-weight: bold;
   font-size: 18px;
   margin-top: 10px;
