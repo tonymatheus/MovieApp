@@ -27,6 +27,7 @@ export const Home = () => {
   const [topMovies, setTopMovies] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [bannerMovie, setBannerMovie] = useState({});
+  const [input, setInput] = useState("");
 
   const navigation = useNavigation();
 
@@ -87,6 +88,17 @@ export const Home = () => {
     });
   };
 
+  const handleSearcMovie = () => {
+    if (!input) {
+      console.log("preencha algum nome");
+      return;
+    }
+    navigation.navigate("Search", {
+      name: input,
+    });
+    setInput("");
+  };
+
   if (isLoading) {
     return (
       <Container>
@@ -102,10 +114,15 @@ export const Home = () => {
 
   return (
     <Container>
-      <Header title="PrimeFaker" />
+      <Header title="MovieApp" />
       <SearchContainer>
-        <Input placeholder="Ex : vingadores" placeholderTextColor="#ddd" />
-        <SearchButton>
+        <Input
+          placeholder="Ex : vingadores"
+          placeholderTextColor="#ddd"
+          value={input}
+          onChangeText={(text) => setInput(text)}
+        />
+        <SearchButton onPress={handleSearcMovie}>
           <Feather name="search" size={30} color="#fff" />
         </SearchButton>
       </SearchContainer>
