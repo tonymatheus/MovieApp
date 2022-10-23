@@ -1,38 +1,61 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { Header } from "../../components/Header";
-import {
-  Container,
-  MyMoviesContaier,
-  Title,
-  Rate,
-  DetailButton,
-  DetailButtonContaier,
-  MeanTitle,
-  TrashButton,
-  RateContainer,
-} from "./styles";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
 
+import { Header } from "../../components/Header";
+import { Container, ListMovies } from "./styles";
+
+import { deleteMovie, getMoviesSaves } from "../../utils/storage";
+import { FavoriteItem } from "../../components/FavoriteItem";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 export const Movies = () => {
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const getFavoriteMovies = async () => {
+      const movieResults = await getMoviesSaves("@favoritesave");
+      if (isActive) {
+        setMovies(movieResults);
+      }
+    };
+
+    if (isActive) {
+      getFavoriteMovies();
+    }
+
+    return () => {
+      isActive = false;
+    };
+  }, [isFocused]);
+
+  const handleDelete = async (id) => {
+    const result = await deleteMovie(id);
+    setMovies(result);
+  };
+
+  const navigateDetails = async (item) => {
+    navigation.navigate("Details", {
+      id: item.id,
+    });
+  };
+
   return (
     <Container>
       <Header title="Meus filmes" />
-      <MyMoviesContaier>
-        <RateContainer>
-          <MeanTitle>Cruela</MeanTitle>
-          <Ionicons name="md-star" size={20} color="#e7a74e" />
-          <Rate>10/10</Rate>
-        </RateContainer>
-        <DetailButtonContaier>
-          <DetailButton>
-            <Title>Ver detalhes</Title>
-          </DetailButton>
-          <TrashButton>
-            <Ionicons name="md-trash" size={30} color="#FFF" />
-          </TrashButton>
-        </DetailButtonContaier>
-      </MyMoviesContaier>
+      <ListMovies
+        showsVerticalScrollIndicator={false}
+        data={movies}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <FavoriteItem
+            data={item}
+            deleteMovie={handleDelete}
+            navigatePage={() => navigateDetails(item)}
+          />
+        )}
+      />
     </Container>
   );
 };
