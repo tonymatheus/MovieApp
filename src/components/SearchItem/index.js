@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export const SearchItem = ({ data, navigatePage }) => {
   const datailMovie = () => {
-    if (data.release_data === "") {
+    if (data.release_data === null) {
       alert("Filme ainda não possui data");
       return;
     }
