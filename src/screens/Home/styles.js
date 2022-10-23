@@ -3,7 +3,7 @@ import { colors } from "../../utils/colors";
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: #191a29;
+  background-color: #141a29;
   padding: 4px 0;
 `;
 
