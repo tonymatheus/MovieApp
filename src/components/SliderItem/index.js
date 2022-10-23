@@ -1,9 +1,12 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import { Container, BannerItem, RateContainer, Rate, Title } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 
 export const SliderItem = ({ data, navigatePage }) => {
+
+
+
+  
   return (
     <Container activeOpacity={0.7} onPress={() => navigatePage(data)}>
       <BannerItem
