@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
 import { Container, ListMovies, Name } from "./styles";
+import { ActivityIndicator } from "react-native";
 import API, { Key } from "../../service/api";
 import { SearchItem } from "../../components/SearchItem";
 
