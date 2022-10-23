@@ -21,6 +21,12 @@ import Stars from "react-native-stars";
 import { Genres } from "../../Genres";
 import WebView from "react-native-webview";
 import { ModalLink } from "../../components/ModalLink";
+import {
+  deleteMovie,
+  getMoviesSaves,
+  hasMovie,
+  saveMovie,
+} from "../../utils/storage";
 
 export const Details = () => {
   const navigation = useNavigation();
@@ -28,6 +34,8 @@ export const Details = () => {
 
   const [movie, setMovie] = useState({});
   const [openLink, setOpenLink] = useState(false);
+  const [favoriteMovie, setFavoriteMovie] = useState(false);
+  const [newinput, setNewInput] = useState("");
 
   useEffect(() => {
     let isActive = true;
@@ -41,8 +49,11 @@ export const Details = () => {
       }).catch((error) => console.log(error));
 
       if (isActive) {
-        setMovie(response.data);
-        console.log(response.data);
+        const movieData = response.data;
+        setMovie(movieData);
+
+        const isFavorite = await hasMovie(movieData);
+        setFavoriteMovie(isFavorite);
       }
     };
 
@@ -55,14 +66,30 @@ export const Details = () => {
     };
   }, []);
 
+  const favoriteMovieSave = async (movie) => {
+    if (favoriteMovie) {
+      await deleteMovie(movie.id);
+      setFavoriteMovie(false);
+      alert("Filme removido da lista");
+    } else {
+      await saveMovie("@favoritesave", movie);
+      setFavoriteMovie(true);
+      alert("filme salvo  com  suceso");
+    }
+  };
+
   return (
     <Container>
       <Header>
         <HeaderButton onPress={() => navigation.goBack()}>
           <Feather name="arrow-left" size={30} color="#fff" />
         </HeaderButton>
-        <HeaderButton>
-          <Ionicons name="bookmark" size={30} color="#fff" />
+        <HeaderButton onPress={() => favoriteMovieSave(movie)}>
+          {favoriteMovie ? (
+            <Ionicons name="bookmark" size={30} color="#fff" />
+          ) : (
+            <Ionicons name="bookmark-outline" size={30} color="#fff" />
+          )}
         </HeaderButton>
       </Header>
 
