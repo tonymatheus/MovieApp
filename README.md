@@ -51,6 +51,6 @@ yarn ios (Para rodar o Emulador ios)
 
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/43850888/196707022-3081b72f-fab9-4e77-95e9-82f8547ea36b.gif)
 
-## ACesse o APK e teste no seu device
+## Acesse o APK e teste no seu device
 
 [MovieApp](https://expo.dev/artifacts/8159a95e-685e-4f20-927f-47f283e51d40)
