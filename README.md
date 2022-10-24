@@ -41,7 +41,6 @@ yarn ios (Para rodar o Emulador ios)
 - [x] React-native
 - [x] Javascript
 - [x] React-Hooks
-- [x] React-hooks
 - [x] The movieDB Api
 - [x] Ract-Navigation
 - [x] Styled-Components
