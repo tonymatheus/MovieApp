@@ -17,7 +17,7 @@ export const FavoriteItem = ({ data, deleteMovie, navigatePage }) => {
       <Title size={22}>{data.title}</Title>
       <RateContainer>
         <Ionicons name="md-star" size={12} color="#e7a74e" />
-        <Rate>{data?.vote_average}</Rate>
+        <Rate>{data?.vote_average.toFixed(1)}</Rate>
       </RateContainer>
       <ActionContainer>
         <DetailButton onPress={() => navigatePage(data.id)}>

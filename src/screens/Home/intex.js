@@ -19,7 +19,6 @@ import API, { Key } from "../../service/api";
 
 import { getListMovies, randomBanner } from "../../utils/movieAlgorithms";
 import { useNavigation } from "@react-navigation/native";
-const { API_Key } = process.env;
 
 export const Home = () => {
   const [nowMovies, setNowMovies] = useState([]);
@@ -135,7 +134,7 @@ export const Home = () => {
           <Banner
             resizeMethod="resize"
             source={{
-              uri: `https://image.tmdb.org/t/p/original/${bannerMovie.poster_path}`,
+              uri: `https://image.tmdb.org/t/p/original/${bannerMovie?.poster_path}`,
             }}
           />
         </BannerButton>

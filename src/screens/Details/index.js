@@ -117,7 +117,7 @@ export const Details = () => {
           }
           halfStart={<Ionicons name="md-start-half" size={24} color="#e73e" />}
         />
-        <Rate>{movie.vote_average}/10</Rate>
+        <Rate>{Number(movie?.vote_average).toFixed(1)}/10</Rate>
       </ContentArea>
 
       <ListGenres
